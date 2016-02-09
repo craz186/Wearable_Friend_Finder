@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="shopscan archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/shopscan_archive</output-path>
+    <root id="archive" name="shopscan archive.war">
+      <element id="artifact" artifact-name="shopscan" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/WebContent/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
