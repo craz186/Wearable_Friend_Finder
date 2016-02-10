@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="search archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/search_archive</output-path>
+    <root id="archive" name="search archive.war">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/WebContent/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+        </element>
+        <element id="directory" name="classes">
+          <element id="module-output" name="com.gibbons.server" />
+        </element>
+      </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/WebContent" />
+    </root>
+  </artifact>
+</component>

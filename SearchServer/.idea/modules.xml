@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/com.photofall.rest.iml" filepath="$PROJECT_DIR$/com.photofall.rest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scraper/scraper.iml" filepath="$PROJECT_DIR$/scraper/scraper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.gibbons.server.iml" filepath="$PROJECT_DIR$/com.gibbons.server.iml" />
     </modules>
   </component>
 </project>

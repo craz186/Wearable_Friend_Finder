@@ -10,12 +10,12 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.photofall.rest"/>
+    <context:component-scan base-package="com.gibbons.server"/>
 
-    <bean id="scanStore" class="com.photofall.rest.store.ScanStore"/>
+    <bean id="userStore" class="com.gibbons.server.store.UserStore"/>
 
-    <bean id="cacheService" class="com.photofall.rest.service.ScanService" >
-        <property name="scanStore" ref="scanStore" />
+    <bean id="userService" class="com.gibbons.server.service.UserService" >
+        <property name="userStore" ref="userStore" />
     </bean>
 
 
