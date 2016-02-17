@@ -1,6 +1,8 @@
 package com.gibbons.gpsselector.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 startFriends(v);
             }
         });
+        SharedPreferences preferences = getSharedPreferences("Accounts", Context.MODE_PRIVATE);
+        String uid = preferences.getString("account","");
+        if(uid.equals("")) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void startMaps(View view) {

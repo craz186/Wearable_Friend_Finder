@@ -57,7 +57,7 @@ public class FriendsActivity extends ListActivity{
                 // do your background process
                 InputStream entity;
                 HttpClient client = HttpClientBuilder.create().build();
-                String url = Constants.serverUrl+"/api/user/friends/9b938710-2111-38f2-902f-9ed4357cd05c/";
+                String url = Constants.serverUrl+"/api/users/friends/9b938710-2111-38f2-902f-9ed4357cd05c/";
 
                 HttpGet request = new HttpGet(url);
                 HttpResponse response = null;
