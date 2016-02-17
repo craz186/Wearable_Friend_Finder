@@ -11,7 +11,7 @@ public class UserResource {
 
 	UserService userService = new UserService();
 	
-	@GET
+	@POST
 	@Path("/add/{username}/{pass}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addNewUser(@PathParam("username") String username,  @PathParam("pass") String password){
@@ -40,9 +40,7 @@ public class UserResource {
 	@Path("/remove/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response removeAUser(@PathParam("username") String username){
-		System.out.println("Drop the bassss");
-		//return userService.deleteUser(username);
-		return null;
+		return userService.deleteUser(username);
 	}
 	
 	@GET

@@ -25,6 +25,14 @@ public class UserStore {
 		System.out.println("Cassandra Connection Successful");
 	}
 
+	public String removeUser(String uid) {
+		//This is used for testing purposes as each users list would then have to be updated to remove users that have
+		//been deleted.
+		PreparedStatement ps = session.prepare("Delete from " + table + " where uid ='"+uid+"';");
+		BoundStatement boundStatement = new BoundStatement(ps);
+		ResultSet rs = session.execute(boundStatement);
+		return "User successfully deleted";
+	}
 	public String addFriend(String currentId, String username) {
 
 		PreparedStatement ps = session.prepare("Select * from " + table + " where uid ='"+currentId+"' ALLOW FILTERING;");
@@ -54,6 +62,19 @@ public class UserStore {
 				friends, currentUser.getString("password")));
 		//add friend to users friends list.
 		return "Successfully added user to friends list";
+	}
+
+	public String selectUser(String name) {
+
+		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE name='"+name+"' ALLOW FILTERING;");
+		BoundStatement boundStatement = new BoundStatement(ps);
+		ResultSet rs =session.execute(boundStatement);
+		Row r = rs.one();
+		if(r == null)
+			return null;
+		LinkedList<Row> rows = new LinkedList<Row>();
+		rows.add(r);
+		return toJSON(rows);
 	}
 	public String createUser(String name, String password) throws SQLException {
 		PreparedStatement ps = session.prepare(
