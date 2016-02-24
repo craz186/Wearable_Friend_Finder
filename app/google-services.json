@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_id": "find-me-mates",
-    "project_number": "411343942857",
-    "name": "Find me Mates"
+    "project_id": "matefinder-f30c",
+    "project_number": "69438153784",
+    "name": "MateFinder"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:411343942857:android:a61505d027a9d9c1",
+        "mobilesdk_app_id": "1:69438153784:android:a61505d027a9d9c1",
         "client_id": "android:com.gibbons.gpsselector",
         "client_type": 1,
         "android_client_info": {

@@ -3,16 +3,29 @@ package com.gibbons.gpsselector.gcm;
 import com.google.android.gms.iid.InstanceID;
 import com.google.android.gms.iid.InstanceIDListenerService;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.google.android.gms.iid.InstanceID;
+import com.google.android.gms.iid.InstanceIDListenerService;
+
 public class InstanceIDService extends InstanceIDListenerService {
+
+    private static final String TAG = "MyInstanceIDLS";
+
+    /**
+     * Called if InstanceID token is updated. This may occur if the security of
+     * the previous token had been compromised. This call is initiated by the
+     * InstanceID provider.
+     */
+    // [START refresh_token]
+    @Override
     public void onTokenRefresh() {
-        refreshAllTokens();
+        // Fetch updated Instance ID token and notify our app's server of any changes (if applicable).
+        Intent intent = new Intent(this, RegistrationIntentService.class);
+        startService(intent);
     }
-
-    private void refreshAllTokens() {
-        // assuming you have defined TokenList as
-        // some generalized store for your tokens
-
-        InstanceID iid = InstanceID.getInstance(this);
-        System.out.println(iid);
-    }
-};
+    // [END refresh_token]
+}

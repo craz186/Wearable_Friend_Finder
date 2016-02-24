@@ -3,6 +3,7 @@ package com.gibbons.gpsselector.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,11 +35,7 @@ import android.widget.TextView;
 
 import com.gibbons.gpsselector.Constants;
 import com.gibbons.gpsselector.R;
-import com.google.android.gms.iid.InstanceID;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.gibbons.gpsselector.gcm.RegistrationIntentService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,13 +44,10 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 
 import static android.Manifest.permission.READ_CONTACTS;
-import static com.gibbons.gpsselector.Constants.APP_ID;
-import static com.gibbons.gpsselector.Constants.GCM;
 
 /**
  * A login screen that offers login via email/password.
@@ -61,6 +55,7 @@ import static com.gibbons.gpsselector.Constants.GCM;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     Context context;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -334,7 +329,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // TODO: attempt authentication against a network service.
             InputStream entity;
             HttpClient client = HttpClientBuilder.create().build();
-            String url = Constants.serverUrl + "/api/users/add/" + mUsername + "/" + mPassword.trim();
+            String url = Constants.SERVER_URL + "/api/users/add/" + mUsername + "/" + mPassword.trim();
 
             HttpPost request = new HttpPost(url);
             HttpResponse response = null;
@@ -353,29 +348,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 while((i =entity.read())!= -1) {
                     s += (char)i;
                 }
-                JSONArray array = new JSONArray(s);
-                JSONObject obj = array.getJSONObject(0);
-                uid = obj.getString("uid");
+                    uid = s;
                 //user already exists
                 //
-            } catch (IOException | JSONException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             SharedPreferences prefs = getSharedPreferences("Accounts", Context.MODE_PRIVATE);
-            if (prefs.getString("regid", "").equals("") && prefs.getString("uid", "").equals("")){
-                // TODO: register the new account here.
-                context = getApplicationContext();
-                String regid = null;
-                try {
-                    regid = InstanceID.getInstance(context).getToken(APP_ID, GCM);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            //prefs.edit().clear().apply();//TODO remove this when not testing
+
+            if(prefs.getString("uid", "").equals("")) {
                 SharedPreferences.Editor editor = getSharedPreferences("Accounts", Context.MODE_PRIVATE).edit();
                 editor.putString("uid", uid);
-                editor.putString("regid", regid);
                 editor.apply();
             }
+
             return true;
         }
 
@@ -386,6 +373,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                SharedPreferences preferences = getSharedPreferences("Accounts", Context.MODE_PRIVATE);
+                if (preferences.getString("regid", "").equals("")) {
+                    Intent intent2 = new Intent(getApplicationContext(), RegistrationIntentService.class);
+                    startService(intent2);
+                    // TODO: register the new account here.
+
+                }
                 startActivity(intent);
                 finish();
             } else {
@@ -400,6 +394,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+
+
+
     }
 }
 

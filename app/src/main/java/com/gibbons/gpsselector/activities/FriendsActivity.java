@@ -1,21 +1,18 @@
 package com.gibbons.gpsselector.activities;
 
-import android.app.FragmentTransaction;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.gibbons.gpsselector.Constants;
 import com.gibbons.gpsselector.R;
-import com.gibbons.gpsselector.fragments.FriendsFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,22 +22,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 
-import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
-import cz.msebera.android.httpclient.entity.StringEntity;
-import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
-import cz.msebera.android.httpclient.message.BasicHeader;
-import cz.msebera.android.httpclient.protocol.HTTP;
 
 public class FriendsActivity extends ListActivity{
+
+
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        uid = getSharedPreferences("Accounts", Context.MODE_PRIVATE).getString("uid","");
         setContentView(R.layout.activity_friends);
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 
@@ -57,7 +53,8 @@ public class FriendsActivity extends ListActivity{
                 // do your background process
                 InputStream entity;
                 HttpClient client = HttpClientBuilder.create().build();
-                String url = Constants.serverUrl+"/api/users/friends/9b938710-2111-38f2-902f-9ed4357cd05c/";
+
+                String url = Constants.SERVER_URL +"/api/users/friends/"+uid+"/";
 
                 HttpGet request = new HttpGet(url);
                 HttpResponse response = null;
@@ -67,6 +64,7 @@ public class FriendsActivity extends ListActivity{
                     e.printStackTrace();
                 }
                 try {
+                    assert response != null;
                     entity = response.getEntity().getContent();
                     int i;
                     s = "";
@@ -89,7 +87,7 @@ public class FriendsActivity extends ListActivity{
                     LinkedList<String> names = new LinkedList<>();
                     for(int i =0; i<json.length(); i++) {
                         object = (JSONObject)json.get(i);
-                        names.add(object.getString("name"));
+                        names.add(object.getString("name")+ " "+object.getString("uid"));
                     }
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1,names);
                     getListView().setAdapter(adapter);
@@ -97,11 +95,71 @@ public class FriendsActivity extends ListActivity{
                     e.printStackTrace();
                 }
                 //TODO convert returned document to Object
+                //TODO check that the user has friends.
             }
         };
 
         task.execute();
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String touid = "" + parent.getItemAtPosition(position).toString().split(" ")[1];
+                NotifyUser notify = new NotifyUser(touid, uid);
+                notify.execute();
+            }
+        });
         //TODO Set click listener for list if clicked. Will send http to server and retrieve gps coords for user.
+    }
+
+    public class NotifyUser extends AsyncTask<Void, Void, Boolean> {
+
+        private String touid;
+        private String fromuid;
+
+        NotifyUser(String touid, String fromuid) {
+            this.touid = touid;
+            this.fromuid = fromuid;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+            HttpClient client = HttpClientBuilder.create().build();
+            String url = Constants.SERVER_URL + "/api/users/notify/" + fromuid + "/" + touid;
+
+            HttpGet request = new HttpGet(url);
+            HttpResponse response = null;
+            int status = 0;
+            String uid = "";
+            try {
+                response = client.execute(request);
+                status = response.getStatusLine().getStatusCode();
+                if (status == 409) {
+                    //display incorrect password/user already exists
+                    return false;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+
+            if (success) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+        }
+
+
+
     }
 
 }
