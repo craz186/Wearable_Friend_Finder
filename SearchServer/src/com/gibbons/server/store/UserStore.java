@@ -50,7 +50,7 @@ public class UserStore {
 		if(rs.all().size() == 0)
 			return "Fail no user exists called "+ username;
 		//TODO notify user being added and once confirmed as friend add to currentUser
-		ps = session.prepare("insert into "+table+" (uid,name,friends,password) values(?,?,?,?)");
+		ps = session.prepare("insert into "+table+" (uid,name,friends,password,regid) values(?,?,?,?,?)");
 		String friends = currentUser.getString("friends");
 		if(friends.equals(""))
 			friends = username;
@@ -59,7 +59,7 @@ public class UserStore {
 
 		boundStatement = new BoundStatement(ps);
 		session.execute(boundStatement.bind(currentId, currentUser.getString("name"),
-				friends, currentUser.getString("password")));
+				friends, currentUser.getString("password"), currentUser.getString("regid")));
 		//add friend to users friends list.
 		return "Successfully added user to friends list";
 	}
@@ -78,12 +78,39 @@ public class UserStore {
 	}
 	public String createUser(String name, String password) throws SQLException {
 		PreparedStatement ps = session.prepare(
-				"insert into "+table+" (uid,name,friends,password) values(?,?,?,?);");
+				"insert into "+table+" (uid,name,friends,password, regid) values(?,?,?,?,?);");
 		BoundStatement boundStatement = new BoundStatement(ps);
 		String id = String.valueOf(UUID.nameUUIDFromBytes(name.getBytes()));
-		session.execute(boundStatement.bind(id,name,"",password));
+		session.execute(boundStatement.bind(id,name,"",password, ""));
 		return id;
 	}
+
+	public String getRegID(String uid) {
+		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE uid='"+uid+"';");
+		BoundStatement boundStatement = new BoundStatement(ps);
+		ResultSet rs =session.execute(boundStatement);
+		Row r = rs.one();
+		if(r == null)
+			return "No user with id: "+ uid;
+		return(r.getString("regid"));
+	}
+	public String appendRegID(String uid, String regid) {
+
+		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE uid='"+uid+"';");
+		BoundStatement boundStatement = new BoundStatement(ps);
+		ResultSet rs =session.execute(boundStatement);
+		Row r = rs.one();
+		if(r == null)
+			return "No user with id: "+ uid;
+
+		ps = session.prepare("insert into "+table+" (uid,name,friends,password,regid) values(?,?,?,?,?);");
+		boundStatement = new BoundStatement(ps);
+		boundStatement.bind(uid, r.getString("name"),
+				r.getString("friends"), r.getString("password"), regid);
+		session.execute(boundStatement);
+		return("Success");
+	}
+
 	public String getFriends(String uid) {
 		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE uid='"+uid+"';");
 		BoundStatement boundStatement = new BoundStatement(ps);
@@ -117,9 +144,10 @@ public class UserStore {
 
 		if(r.getString("password").equals(oldPassword)) {
 			ps = session.prepare(
-					"insert into "+table+" (uid,name,friends,password) values(?,?,?,?);");
+					"insert into "+table+" (uid,name,friends,password,regid) values(?,?,?,?,?);");
 			boundStatement = new BoundStatement(ps);
-			session.execute(boundStatement.bind(r.getString("uid"), r.getString("name"), r.getString("friends"),newPassword));
+			session.execute(boundStatement.bind(r.getString("uid"), r.getString("name"), r.getString("friends"),newPassword,
+					r.getString("regid")));
 			return "Successfully updated password";
 		}
 		else {
