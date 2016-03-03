@@ -148,8 +148,6 @@ public class FriendsActivity extends ListActivity{
         protected void onPostExecute(final Boolean success) {
 
             if (success) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         }

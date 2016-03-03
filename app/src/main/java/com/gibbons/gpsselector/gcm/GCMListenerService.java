@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,6 +16,8 @@ import com.gibbons.gpsselector.Constants;
 import com.gibbons.gpsselector.R;
 import com.gibbons.gpsselector.activities.GPSActivity;
 import com.gibbons.gpsselector.activities.MainActivity;
+
+import com.gibbons.gpsselector.gps.MyLocation;
 import com.google.android.gms.gcm.GcmListenerService;
 
 import java.io.IOException;
@@ -22,6 +25,7 @@ import java.io.IOException;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 
 public class GCMListenerService extends GcmListenerService {
@@ -47,8 +51,25 @@ public class GCMListenerService extends GcmListenerService {
         }
     }
 
-    private void calculatePath(String latitude, String longitude) {
+    private void calculatePath(final String latitude, final String longitude) {
+//        SingleShotLocationProvider.requestSingleUpdate(getApplicationContext(),
+//                new SingleShotLocationProvider.LocationCallback() {
+//                    @Override
+//                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
+//                        Log.d("Location", "my location is " + location.toString());
+//                        new CalculatePath(location.latitude+","+location.longitude,latitude+","+longitude).execute();
+//                    }
+//                });
 
+        MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
+            @Override
+            public void gotLocation(Location location){
+                //Got the location!
+                new CalculatePath(location.getLatitude()+","+location.getLongitude(),latitude+","+longitude).execute();
+            }
+        };
+        MyLocation myLocation = new MyLocation();
+        myLocation.getLocation(this, locationResult);
     }
 
     private void sendNotification(String message) {
@@ -77,23 +98,21 @@ public class GCMListenerService extends GcmListenerService {
 
     public class CalculatePath extends AsyncTask<Void, Void, Boolean> {
 
-        private String fromuid;
-        private float latitude;
-        private float longitude;
+        private String startGps;
+        private String endGps;
 
-        CalculatePath(String uid, float latitude, float longitude) {
-            this.fromuid = uid;
-            this.latitude = latitude;
-            this.longitude = longitude;
+        CalculatePath(String startGps, String endGps) {
+            this.startGps = startGps;
+            this.endGps = endGps;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
             HttpClient client = HttpClientBuilder.create().build();
-            String url = Constants.SERVER_URL + "/api/path/calculate/" + fromuid + "/" + latitude + "/" + longitude + "/";
+            String url = Constants.SERVER_URL + "/api/path/calculate/" + startGps + "/" + endGps + "/";
 
-            HttpGet request = new HttpGet(url);
+            HttpPost request = new HttpPost(url);
             HttpResponse response;
             try {
                 response = client.execute(request);

@@ -19,7 +19,8 @@ import android.view.View;
 
 import com.gibbons.gpsselector.Constants;
 import com.gibbons.gpsselector.R;
-import com.gibbons.gpsselector.gps.SingleShotLocationProvider;
+import com.gibbons.gpsselector.gps.MyLocation;
+
 
 import java.io.IOException;
 
@@ -43,18 +44,27 @@ public class GPSActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mLocationManager = (LocationManager)
                 getSystemService(Context.LOCATION_SERVICE);
-        SingleShotLocationProvider.requestSingleUpdate(getApplicationContext(),
-                new SingleShotLocationProvider.LocationCallback() {
-                    @Override
-                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
-                        Log.d("Location", "my location is " + location.toString());
-                        sendToServer(fromuid, location.latitude, location.longitude);
-                    }
-                });
+//        SingleShotLocationProvider.requestSingleUpdate(getApplicationContext(),
+//                new SingleShotLocationProvider.LocationCallback() {
+//                    @Override
+//                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
+//                        Log.d("Location", "my location is " + location.toString());
+//                        sendToServer(fromuid, location.latitude, location.longitude);
+//                    }
+//                });
 
+        MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
+            @Override
+            public void gotLocation(Location location){
+                //Got the location!
+                sendToServer(fromuid, location.getLatitude(), location.getLongitude());
+            }
+        };
+        MyLocation myLocation = new MyLocation();
+        myLocation.getLocation(this, locationResult);
     }
 
-    private void sendToServer(String fromuid, float latitude, float longitude) {
+    private void sendToServer(String fromuid, double latitude, double longitude) {
         new NotifyUser(fromuid, latitude, longitude).execute();
     }
 
@@ -89,10 +99,10 @@ public class GPSActivity extends AppCompatActivity {
     public class NotifyUser extends AsyncTask<Void, Void, Boolean> {
 
         private String fromuid;
-        private float latitude;
-        private float longitude;
+        private double latitude;
+        private double longitude;
 
-        NotifyUser(String uid, float latitude, float longitude) {
+        NotifyUser(String uid, double latitude, double longitude) {
             this.fromuid = uid;
             this.latitude = latitude;
             this.longitude = longitude;
