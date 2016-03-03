@@ -6,4 +6,5 @@ package com.gibbons.server.utils;
 public class Constants {
 
     public static final String serverUrl = "https://gcm-http.googleapis.com/gcm/send";
+    public static final String googleDirections = "https://maps.googleapis.com/maps/api/directions/";
 }
