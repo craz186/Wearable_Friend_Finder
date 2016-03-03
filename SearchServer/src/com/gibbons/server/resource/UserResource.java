@@ -5,6 +5,7 @@ import com.gibbons.server.service.UserService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 
 @Path("/users")
 public class UserResource {
@@ -18,6 +19,36 @@ public class UserResource {
 		return userService.createUser(username, password);
 	}
 
+	@PUT
+	@Path("/add/{uid}/{regid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response appendRegID(@PathParam("uid") String uid,  @PathParam("regid") String regid){
+		return userService.appendRegID(uid, regid);
+	}
+
+	@GET
+	@Path("/notify/{fromuid}/{touid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response notifyUser(@PathParam("fromuid") String fromuid, @PathParam("touid") String touid){
+		try {
+			return userService.notifyUser(fromuid, touid);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@GET
+	@Path("/notify/{uid}/{lat}/{lon}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response notifyUser(@PathParam("uid") String uid, @PathParam("lat") String lat, @PathParam("lon") String lon){
+		try {
+			return userService.notifyUser(uid, lat, lon);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@GET
 	@Path("/addFriend/{uid}/{name}")
