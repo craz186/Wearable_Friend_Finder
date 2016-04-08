@@ -8,8 +8,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.gibbons.gpsselector.Constants;
-import com.gibbons.gpsselector.QuickstartPreferences;
+import com.gibbons.gpsselector.util.Constants;
+import com.gibbons.gpsselector.util.QuickstartPreferences;
 import com.gibbons.gpsselector.R;
 import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;

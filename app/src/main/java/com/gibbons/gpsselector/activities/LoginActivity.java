@@ -33,7 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.gibbons.gpsselector.Constants;
+import com.gibbons.gpsselector.util.Constants;
 import com.gibbons.gpsselector.R;
 import com.gibbons.gpsselector.gcm.RegistrationIntentService;
 

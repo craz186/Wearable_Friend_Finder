@@ -1,18 +1,18 @@
 package com.gibbons.gpsselector.activities;
 
+import android.app.DialogFragment;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.widget.Button;
 
-import com.gibbons.gpsselector.Constants;
+import com.gibbons.gpsselector.util.Constants;
 import com.gibbons.gpsselector.R;
+import com.gibbons.gpsselector.fragments.LoginDialogFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +25,6 @@ import java.util.LinkedList;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
-import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 
 public class FriendsActivity extends ListActivity{
@@ -38,15 +37,18 @@ public class FriendsActivity extends ListActivity{
         super.onCreate(savedInstanceState);
         uid = getSharedPreferences("Accounts", Context.MODE_PRIVATE).getString("uid","");
         setContentView(R.layout.activity_friends);
+
+
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFriend();
+            }
+        });
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 
             String s = "";
-
-            @Override
-            protected void onPreExecute() {
-                //Show UI
-
-            }
 
             @Override
             protected Void doInBackground(Void... arg0) {
@@ -64,7 +66,9 @@ public class FriendsActivity extends ListActivity{
                     e.printStackTrace();
                 }
                 try {
-                    assert response != null;
+                    if(response == null) {
+                        return null;
+                    }
                     entity = response.getEntity().getContent();
                     int i;
                     s = "";
@@ -80,7 +84,9 @@ public class FriendsActivity extends ListActivity{
             @Override
             protected void onPostExecute(Void result) {
                 //Show UI (Toast msg here)
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                if(s.equals("")) {
+                    return;
+                }
                 try {
                     JSONArray json = new JSONArray(s);
                     JSONObject object = null;
@@ -109,6 +115,14 @@ public class FriendsActivity extends ListActivity{
             }
         });
         //TODO Set click listener for list if clicked. Will send http to server and retrieve gps coords for user.
+    }
+
+    private void addFriend() {
+        //add friend here
+
+        DialogFragment newFragment = new LoginDialogFragment();
+        newFragment.show(getFragmentManager(), "missiles");
+
     }
 
     public class NotifyUser extends AsyncTask<Void, Void, Boolean> {
@@ -143,21 +157,5 @@ public class FriendsActivity extends ListActivity{
             }
             return true;
         }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-
-            if (success) {
-                finish();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-        }
-
-
-
     }
-
 }

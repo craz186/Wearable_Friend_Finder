@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gibbons.gpsselector;
+package com.gibbons.gpsselector.util;
 
 public class QuickstartPreferences {
 

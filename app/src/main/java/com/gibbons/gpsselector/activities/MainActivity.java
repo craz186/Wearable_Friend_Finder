@@ -6,21 +6,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.gibbons.gpsselector.QuickstartPreferences;
+import com.gibbons.gpsselector.util.QuickstartPreferences;
 import com.gibbons.gpsselector.R;
-import com.gibbons.gpsselector.gcm.RegistrationIntentService;
+import com.gibbons.gpsselector.bluetooth.BluetoothConnect;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -59,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
-
+        //TODO need to check if flora is already connected.
+//        Intent intent = new Intent(this, BluetoothConnect.class);
+//        startActivity(intent);
     }
 
     public void startMaps(View view) {

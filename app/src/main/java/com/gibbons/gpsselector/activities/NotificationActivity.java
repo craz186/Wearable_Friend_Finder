@@ -1,23 +1,17 @@
 package com.gibbons.gpsselector.activities;
 
-import android.Manifest;
-import android.annotation.TargetApi;
+import android.app.DialogFragment;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 
-import com.gibbons.gpsselector.Constants;
+import com.gibbons.gpsselector.fragments.FriendRequestDialogFragment;
+import com.gibbons.gpsselector.fragments.LoginDialogFragment;
+import com.gibbons.gpsselector.util.Constants;
 import com.gibbons.gpsselector.R;
 import com.gibbons.gpsselector.gps.MyLocation;
 
@@ -27,10 +21,9 @@ import java.io.IOException;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
-import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 
-public class GPSActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
 
     LocationManager mLocationManager;
 
@@ -39,6 +32,7 @@ public class GPSActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
         final String fromuid = extras.getString("fromuid");
+        final String request = extras.getString("request");
         setContentView(R.layout.activity_gps);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,16 +46,25 @@ public class GPSActivity extends AppCompatActivity {
 //                        sendToServer(fromuid, location.latitude, location.longitude);
 //                    }
 //                });
+        if(request.equals("FriendRequest")) {
 
-        MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
-            @Override
-            public void gotLocation(Location location){
-                //Got the location!
-                sendToServer(fromuid, location.getLatitude(), location.getLongitude());
-            }
-        };
-        MyLocation myLocation = new MyLocation();
-        myLocation.getLocation(this, locationResult);
+            DialogFragment newFragment = new FriendRequestDialogFragment();
+            Bundle args = new Bundle();
+            args.putString("fromuid", fromuid);
+            newFragment.setArguments(args);
+            newFragment.show(getFragmentManager(), "missiles");
+        }
+        else {
+            MyLocation.LocationResult locationResult = new MyLocation.LocationResult() {
+                @Override
+                public void gotLocation(Location location) {
+                    //Got the location!
+                    sendToServer(fromuid, location.getLatitude(), location.getLongitude());
+                }
+            };
+            MyLocation myLocation = new MyLocation();
+            myLocation.getLocation(this, locationResult);
+        }
     }
 
     private void sendToServer(String fromuid, double latitude, double longitude) {
