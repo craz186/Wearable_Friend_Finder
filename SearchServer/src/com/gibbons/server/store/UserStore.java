@@ -25,15 +25,24 @@ public class UserStore {
 		System.out.println("Cassandra Connection Successful");
 	}
 
-	public String removeUser(String uid) {
+	public String removeUser(String name) {
 		//This is used for testing purposes as each users list would then have to be updated to remove users that have
 		//been deleted.
-		PreparedStatement ps = session.prepare("Delete from " + table + " where uid ='"+uid+"';");
+		PreparedStatement ps = session.prepare("Select * from " + table + " where name ='"+name+"' ALLOW FILTERING;");
 		BoundStatement boundStatement = new BoundStatement(ps);
 		ResultSet rs = session.execute(boundStatement);
+		List<Row> rows = rs.all();
+		if(rows.size() == 0) {
+			return "No user with name " + name;
+		}
+		Row currentUser = rows.get(0);
+		ps = session.prepare("Delete from " + table + " where name ='"+name+"' and uid ='"+currentUser.getString("uid")+"';");
+		boundStatement = new BoundStatement(ps);
+		session.execute(boundStatement);
 		return "User successfully deleted";
 	}
-	public String addFriend(String currentId, String username) {
+
+	public String addFriendV2(String currentId, String username) {
 
 		PreparedStatement ps = session.prepare("Select * from " + table + " where uid ='"+currentId+"' ALLOW FILTERING;");
 		BoundStatement boundStatement = new BoundStatement(ps);
@@ -43,27 +52,46 @@ public class UserStore {
 			return "Fail no uid exists for "+ currentId;
 		//TODO if multiple users need to let user select which one
 		Row currentUser = rows.get(0);
-
+		if(currentUser.getString("friends").contains(username))
+			return "User already added to friends list";
 		ps = session.prepare("Select * from " + table + " where name ='"+username+"' ALLOW FILTERING;");
 		boundStatement = new BoundStatement(ps);
 		rs = session.execute(boundStatement);
-		if(rs.all().size() == 0)
+		rows = rs.all();
+		if(rows.size() == 0)
 			return "Fail no user exists called "+ username;
-		//TODO notify user being added and once confirmed as friend add to currentUser
-		ps = session.prepare("insert into "+table+" (uid,name,friends,password,regid) values(?,?,?,?,?)");
+
+		Row friendUser = rows.get(0);
+		putFriend(currentUser, username);
+		putFriend(friendUser, currentUser.getString("name"));
+		//rows
+		//add friend to users friends list.
+		return "Successfully added user to friends list";
+	}
+
+
+	public void putFriend(Row currentUser, String username) {
+		PreparedStatement ps = session.prepare("insert into "+table+" (uid,name,friends,password,regid) values(?,?,?,?,?)");
 		String friends = currentUser.getString("friends");
 		if(friends.equals(""))
 			friends = username;
 		else
 			friends += " " + username;
 
-		boundStatement = new BoundStatement(ps);
-		session.execute(boundStatement.bind(currentId, currentUser.getString("name"),
+		BoundStatement boundStatement = new BoundStatement(ps);
+		session.execute(boundStatement.bind(currentUser.getString("uid"), currentUser.getString("name"),
 				friends, currentUser.getString("password"), currentUser.getString("regid")));
-		//add friend to users friends list.
-		return "Successfully added user to friends list";
 	}
 
+	public String getRegIDFromUsername(String name) {
+		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE name='"+name+"'ALLOW FILTERING;");
+		BoundStatement boundStatement = new BoundStatement(ps);
+		ResultSet rs =session.execute(boundStatement);
+		Row r = rs.one();
+		if(r == null)
+			return "No user with name: "+ name;
+		return(r.getString("regid"));
+	}
 	public String selectUser(String name) {
 
 		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE name='"+name+"' ALLOW FILTERING;");
@@ -94,6 +122,7 @@ public class UserStore {
 			return "No user with id: "+ uid;
 		return(r.getString("regid"));
 	}
+
 	public String appendRegID(String uid, String regid) {
 
 		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE uid='"+uid+"';");
@@ -166,5 +195,29 @@ public class UserStore {
 		JSONArray json;
 		json = converter.toJSONArray(rows);
 		return(json.toString());
+	}
+
+	public String getUsernameFromUid(String uid) {
+
+		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE uid='"+uid+"';");
+		BoundStatement boundStatement = new BoundStatement(ps);
+		ResultSet rs =session.execute(boundStatement);
+		Row r = rs.one();
+		if(r == null) {
+			return "No user with id: " + uid;
+		}
+		return r.getString("name");
+	}
+
+	public Object getUid(String name) {
+
+		PreparedStatement ps = session.prepare("SELECT * FROM "+table+" WHERE name='"+name+"'ALLOW FILTERING;");
+		BoundStatement boundStatement = new BoundStatement(ps);
+		ResultSet rs =session.execute(boundStatement);
+		Row r = rs.one();
+		if(r == null) {
+			return "No user with name: " + name;
+		}
+		return r.getString("uid");
 	}
 }

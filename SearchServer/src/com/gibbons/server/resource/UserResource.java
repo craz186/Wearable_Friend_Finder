@@ -11,7 +11,14 @@ import java.io.IOException;
 public class UserResource {
 
 	UserService userService = new UserService();
-	
+
+	@GET
+	@Path("/test")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response test() {
+		return Response.ok("Hi").build();
+	}
+
 	@POST
 	@Path("/add/{username}/{pass}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -26,31 +33,35 @@ public class UserResource {
 		return userService.appendRegID(uid, regid);
 	}
 
+
+	@POST
+	@Path("/notifyFriend/{fromuid}/{toUser}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response notifyFriendRequest(@PathParam("fromuid") String fromuid, @PathParam("toUser") String toUser){
+		return userService.notifyFriend(fromuid, toUser);
+	}
+
 	@GET
 	@Path("/notify/{fromuid}/{touid}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response notifyUser(@PathParam("fromuid") String fromuid, @PathParam("touid") String touid){
-		try {
-			return userService.notifyUser(fromuid, touid);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return userService.notifyUser(fromuid, touid);
 	}
 
 	@GET
 	@Path("/notify/{uid}/{lat}/{lon}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response notifyUser(@PathParam("uid") String uid, @PathParam("lat") String lat, @PathParam("lon") String lon){
-		try {
-			return userService.notifyUser(uid, lat, lon);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return userService.notifyUser(uid, lat, lon);
 	}
 
 	@GET
+	@Path("/notifyv2/{username}/{touid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response notifyUserv2(@PathParam("username") String fromuid, @PathParam("touid") String username){
+		return userService.notifyUserv2(fromuid, username);
+	}
+	@POST
 	@Path("/addFriend/{uid}/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addFriend(@PathParam("uid")String uid, @PathParam("name")String name) {
@@ -67,35 +78,4 @@ public class UserResource {
 		return userService.getFriends(uid);
 	}
 
-	@GET
-	@Path("/remove/{username}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response removeAUser(@PathParam("username") String username){
-		return userService.deleteUser(username);
-	}
-	
-	@GET
-	@Path("/changepassword/{uid}/{old}/{new}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response removeAUser(@PathParam("uid") String uid, @PathParam("old") String oldPassword, @PathParam("new") String newPassword){
-		return userService.modifyPassword(uid, oldPassword, newPassword);
-	}
-	
-	@GET
-	@Path("/updateuser/{fname}/{lname}/{username}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeUser(@PathParam("fname") String fname, @PathParam("lname") String lname, @PathParam("username") String username){
-		System.out.println("Drop the bassss");
-//		return userService.updateUser(fname, lname, username);
-		return null;
-	}
-	
-	@GET
-	@Path("/getuser/{username}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getuser(@PathParam("username") String username){
-		System.out.println("Drop the bassss");
-//		return userService.retrieveUser(username);
-		return null;
-	}
 }

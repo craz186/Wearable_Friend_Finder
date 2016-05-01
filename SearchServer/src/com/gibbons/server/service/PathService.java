@@ -36,7 +36,10 @@ public class PathService {
             while((k =stream.read())!= -1) {
                 s += (char)k;
             }
-            JSONObject obj = (JSONObject) new JSONObject(s).getJSONArray("routes").get(0);
+            JSONArray routes = new JSONObject(s).getJSONArray("routes");
+            if(routes.length() == 0)
+                return(Response.noContent().build());
+            JSONObject obj = (JSONObject) routes.get(0);
             JSONArray arr = obj.getJSONArray("legs");
             arr = arr.getJSONObject(0).getJSONArray("steps");
 
@@ -51,7 +54,7 @@ public class PathService {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-
+        System.out.println(path);
         return(Response.ok(path).build());
 
     }

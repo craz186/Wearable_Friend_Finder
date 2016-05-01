@@ -102,7 +102,7 @@ public class ToJson {
                     	 obj.put(column_name, r.getDecimal(column_name));
                     	 // /*Debug*/ System.out.println("ToJson: NUMERIC");
                       }
-                    }//end foreach
+                 }//end foreach
 
                  json.put(obj);
 
