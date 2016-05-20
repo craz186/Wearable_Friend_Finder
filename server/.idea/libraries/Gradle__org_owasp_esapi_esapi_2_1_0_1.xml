@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.owasp.esapi:esapi:2.1.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.owasp.esapi/esapi/2.1.0.1/8d35e0bad77067b534664cb408493136e086aae1/esapi-2.1.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.owasp.esapi/esapi/2.1.0.1/9dc995daebacd9e674c99f5ba45b52b55434f00c/esapi-2.1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

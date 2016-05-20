@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class com.gibbons.server.service.PathServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class com.gibbons.server.service.PathServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.gibbons.server.service.html">com.gibbons.server.service</a> &gt; PathServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.523s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testCalculatePath</td>
+<td>0.523s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>19:24:35.333 [Test worker] DEBUG o.a.h.c.protocol.RequestAddCookies - CookieSpec selected: default
+19:24:35.333 [Test worker] DEBUG o.a.h.c.protocol.RequestAuthCache - Auth cache not set in the context
+19:24:35.334 [Test worker] DEBUG o.a.h.i.c.PoolingHttpClientConnectionManager - Connection request: [route: {s}-&gt;https://maps.googleapis.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+19:24:35.334 [Test worker] DEBUG o.a.h.i.c.PoolingHttpClientConnectionManager - Connection leased: [id: 1][route: {s}-&gt;https://maps.googleapis.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+19:24:35.334 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Opening connection {s}-&gt;https://maps.googleapis.com:443
+19:24:35.335 [Test worker] DEBUG o.a.h.i.c.DefaultHttpClientConnectionOperator - Connecting to maps.googleapis.com/74.125.24.95:443
+19:24:35.335 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Connecting socket to maps.googleapis.com/74.125.24.95:443 with timeout 0
+19:24:35.363 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Enabled protocols: [TLSv1, TLSv1.1, TLSv1.2]
+19:24:35.364 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+19:24:35.364 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Starting handshake
+19:24:35.433 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Secure session established
+19:24:35.433 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  negotiated protocol: TLSv1.2
+19:24:35.433 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+19:24:35.433 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  peer principal: CN=*.googleapis.com, O=Google Inc, L=Mountain View, ST=California, C=US
+19:24:35.433 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  peer alternative names: [*.googleapis.com, *.clients6.google.com, *.cloudendpointsapis.com, cloudendpointsapis.com, googleapis.com]
+19:24:35.433 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  issuer principal: CN=Google Internet Authority G2, O=Google Inc, C=US
+19:24:35.434 [Test worker] DEBUG o.a.h.i.c.DefaultHttpClientConnectionOperator - Connection established 136.206.109.70:62263&lt;-&gt;74.125.24.95:443
+19:24:35.434 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Executing request GET /maps/api/directions/json?origin=1&amp;destination=1&amp;key=AIzaSyAjdA8Q5lQzXfWvbtOTl8PF_zE42I8f96E HTTP/1.1
+19:24:35.434 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Target auth state: UNCHALLENGED
+19:24:35.434 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+19:24:35.435 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &gt;&gt; GET /maps/api/directions/json?origin=1&amp;destination=1&amp;key=AIzaSyAjdA8Q5lQzXfWvbtOTl8PF_zE42I8f96E HTTP/1.1
+19:24:35.435 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &gt;&gt; Host: maps.googleapis.com
+19:24:35.435 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &gt;&gt; Connection: Keep-Alive
+19:24:35.435 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &gt;&gt; User-Agent: Apache-HttpClient/4.5.1 (Java/1.8.0_60)
+19:24:35.435 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &gt;&gt; Accept-Encoding: gzip,deflate
+19:24:35.435 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &gt;&gt; &quot;GET /maps/api/directions/json?origin=1&amp;destination=1&amp;key=AIzaSyAjdA8Q5lQzXfWvbtOTl8PF_zE42I8f96E HTTP/1.1[\r][\n]&quot;
+19:24:35.435 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &gt;&gt; &quot;Host: maps.googleapis.com[\r][\n]&quot;
+19:24:35.435 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &gt;&gt; &quot;Connection: Keep-Alive[\r][\n]&quot;
+19:24:35.435 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &gt;&gt; &quot;User-Agent: Apache-HttpClient/4.5.1 (Java/1.8.0_60)[\r][\n]&quot;
+19:24:35.435 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &gt;&gt; &quot;Accept-Encoding: gzip,deflate[\r][\n]&quot;
+19:24:35.435 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &gt;&gt; &quot;[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;HTTP/1.1 200 OK[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Content-Type: application/json; charset=UTF-8[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Date: Thu, 19 May 2016 18:24:33 GMT[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Expires: Fri, 20 May 2016 18:24:33 GMT[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Cache-Control: public, max-age=86400[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Vary: Accept-Language[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Content-Encoding: gzip[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Server: mafe[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;X-XSS-Protection: 1; mode=block[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;X-Frame-Options: SAMEORIGIN[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Alternate-Protocol: 443:quic[\r][\n]&quot;
+19:24:35.826 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Alt-Svc: quic=&quot;:443&quot;; ma=2592000; v=&quot;34,33,32,31,30,29,28,27,26,25&quot;[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;Transfer-Encoding: chunked[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x1f][\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x8b][\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x8][\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x0][\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x0][\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x0][\r][\n]&quot;
+19:24:35.827 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x0][\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x0][\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x2][\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0xff][\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0xcd][\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;V[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.828 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0xdb][\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;n[\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x9c][\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00000001[\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;0[\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;00001[\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0x10][\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;235[\r][\n]&quot;
+19:24:35.829 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;}[0xdf][0xaf][0xb0][0xfc][0x8c]R[0x8]M[0x94][0xed]co[0xdb]m[0x95][0xae][0xb2]R[0x12][0xa9][0xed][0xca]r[0xf0]d[0xb1][0x4]61[0x86][0xed]6[0xe2][0x83][0xfa][0x1b][0xfd][0xb2][0x82]M[0x1a][0x8]P[0x88][0xda][0xaa][0xf1][0x8b][0xb5][0x9e]3[0xeb]33[0xc7][0xcc][0xdc][0xce][0x10]Bx[0xb]2[0x90][0xc][0x18][0xd9][0xd1]}&quot;[0xb9][0xd0])F/[0xd0][0xe7][0xca]V[0xae][0xdb]zo [0x15]I5[0xd5][0x99][0x81][0xe1][0xd5][0x7][0xec]4 ID[0x3] [0x9c][0x19][0xdb][0xab]p[0xf9][0xfe][0xdb][0xc5]j~[0xf9][0x92][0x9c]][0xae][0xcf][0xd7][0xf1][0xd9]y W[0xf2]S[0xbe]X[0xb6][0x9c][0xf4]&gt;[0x1]{)[0xc2]Jf[0x1a]0[0xda][0xd4][0xe6][0xc2]y&quot;&lt;[0xaa]}c[0xc0][0xd6]4[0x98][0xa4]+[0x99][0x9]f[0xac][0x8d][0xd3][0xca] [0xa4][0xd2]![0xd0]Twm[0x95]9[0xa2][0xc6][0xe0][0xfb][0x7][0xee][0xe1]s[0xcf]s=[0xa7][0xb][0x11][[0x3][0x99][0x1f][0x1c][0x9d][0x1c][0x1f][0x9d][0xf8][0xfe][0xdc][0xae][0x16][0xb0]h[0xfb][0xe1][0xb4]d[0x1b][0xee][0xe0][0x9f]_{[0xff][0xab][0xc9][0x0][0x7]2[0xd9]+[0xbe][\r][0xad][0xaa][0xf0])M[0x10][0xa3][0x9a][0xa2][0x1f][0xdf][0xf]][0xef][0x18]-[0xa4][0xdc]F[0xd0][0xaa]B[0x4][0xdb]Vr[0xed][0xea]2g[0xbc],[0xbf][0x8][0xa0]7[0xae][\n]&quot;
+19:24:35.830 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[0xa0][0xe1][0xab][0x89][\r]{([0xc6][0x9d][0xb0]*DN[0xa3][0xcc][0xf8][0xbb][0xf][0xad]E7[\r],STs)&amp;[0xdd][0xc7][0xc5]_[0xb8][0x11][0x4]#[0x94]1[0x5][0xa9]M[0x9e][0xe7][0xa0]S[0xca]([0x17][0xe]Z*z[0xd3][0xbd][0xc1]xD2[0xf8]=[0xcf][0xf1][0x92][0xa3][0xa9]U[0xef][0xe7]][0xd6]E[0xe9]G2[0xb7]&gt;O[0x81];$=[0xf2][0xb3][0xab][0x8f][0x12][0x9a] [0xc5][0x1a]6*[0xc8][0x1a]7,[0x92]![0xda]w&lt;F$[0xda][0xc3]c@[0xa8]&#x7f;[0xca]d[0x8a][0x10]k[0xe8][0xa4][0x92][0xde]a'[0x16]v[0x84]][0xa8][0xe3][0x88]p[0x91]j[0x95][0x5][0x15]C+[0xd2]w@[0x19][0x92][0x2]}[0xc9]\[0xd7][0xf][0xae][0xcc][0x6][0xeb][0xea]c[0x8f]&lt;{[0xf6][0xac]&gt;[0x1c]J[0x19]Nd[0xb4][0x8f][0xb8][0x18][0x13][0xc2]}[0x9b][0xc5][0x19][0xb9][0x9][0xdf][0x4];[0x95][0xbc][0xc5][0x8f][0xc]b[0xda][0x8b][0xa9][0xc1][0xff]![0xc9]Z[0xd1][0x1c]&quot;[0x12][0x97][0x9d][0xda]D[0xfa]z[0xbd][0xbc]X~\[0xf4][0x85]Y&lt;&lt;[0xdb]t[0x1f]f[0xf9]w[0xd7][0xd7]&lt; i[0x2][0xe5][0xac][0x2]B[0xab][0xbd]y[0xa6]=[0xd0][0x9c][0xd3]_[0xc3][0x8c][0xc5][0xc][0xb5][0xaa][0xa6]3[0x96]9[0xa8][0x9c][0xc3][0x8e][0xc]Wq[0xb4]r[0xad][0xde][0x97]fqL-M\[0xeb][0xa8][0xd5][0xe9]vT[0x9].[0xea]n[0xb7]i[,{&quot;U9[0xe7][0xb4]bhN&quot;[0xed][0xf9]gV[0xcc]~[0x2]*[0x87][0xb8]j[0xd2][0x9][0x0][0x0][\r][\n]&quot;
+19:24:35.830 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;0[\r][\n]&quot;
+19:24:35.830 [Test worker] DEBUG org.apache.http.wire - http-outgoing-1 &lt;&lt; &quot;[\r][\n]&quot;
+19:24:35.830 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; HTTP/1.1 200 OK
+19:24:35.830 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Content-Type: application/json; charset=UTF-8
+19:24:35.830 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Date: Thu, 19 May 2016 18:24:33 GMT
+19:24:35.830 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Expires: Fri, 20 May 2016 18:24:33 GMT
+19:24:35.830 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Cache-Control: public, max-age=86400
+19:24:35.830 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Vary: Accept-Language
+19:24:35.830 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Content-Encoding: gzip
+19:24:35.831 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Server: mafe
+19:24:35.831 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; X-XSS-Protection: 1; mode=block
+19:24:35.831 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; X-Frame-Options: SAMEORIGIN
+19:24:35.831 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Alternate-Protocol: 443:quic
+19:24:35.831 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Alt-Svc: quic=&quot;:443&quot;; ma=2592000; v=&quot;34,33,32,31,30,29,28,27,26,25&quot;
+19:24:35.831 [Test worker] DEBUG org.apache.http.headers - http-outgoing-1 &lt;&lt; Transfer-Encoding: chunked
+19:24:35.831 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+33.0241101,39.58658339999999 
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>Generated by 
+<a href="http://www.gradle.org">Gradle 2.2</a> at May 19, 2016 7:24:35 PM</p>
+</div>
+</div>
+</body>

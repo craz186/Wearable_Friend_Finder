@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gibbons.server.resource.PathResourceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-05-19T18:24:34" hostname="Laptop" time="1.226">
+  <properties/>
+  <testcase name="test" classname="com.gibbons.server.resource.PathResourceTest" time="0.002"/>
+  <testcase name="testCalculatePath" classname="com.gibbons.server.resource.PathResourceTest" time="1.224"/>
+  <system-out><![CDATA[19:24:34.636 [Test worker] DEBUG o.a.h.c.protocol.RequestAddCookies - CookieSpec selected: default
+19:24:34.670 [Test worker] DEBUG o.a.h.c.protocol.RequestAuthCache - Auth cache not set in the context
+19:24:34.671 [Test worker] DEBUG o.a.h.i.c.PoolingHttpClientConnectionManager - Connection request: [route: {s}->https://maps.googleapis.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+19:24:34.686 [Test worker] DEBUG o.a.h.i.c.PoolingHttpClientConnectionManager - Connection leased: [id: 0][route: {s}->https://maps.googleapis.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+19:24:34.688 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Opening connection {s}->https://maps.googleapis.com:443
+19:24:34.695 [Test worker] DEBUG o.a.h.i.c.DefaultHttpClientConnectionOperator - Connecting to maps.googleapis.com/74.125.24.95:443
+19:24:34.695 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Connecting socket to maps.googleapis.com/74.125.24.95:443 with timeout 0
+19:24:34.946 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Enabled protocols: [TLSv1, TLSv1.1, TLSv1.2]
+19:24:34.946 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+19:24:34.946 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Starting handshake
+19:24:35.069 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory - Secure session established
+19:24:35.069 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  negotiated protocol: TLSv1.2
+19:24:35.069 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+19:24:35.070 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  peer principal: CN=*.googleapis.com, O=Google Inc, L=Mountain View, ST=California, C=US
+19:24:35.070 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  peer alternative names: [*.googleapis.com, *.clients6.google.com, *.cloudendpointsapis.com, cloudendpointsapis.com, googleapis.com]
+19:24:35.071 [Test worker] DEBUG o.a.h.c.s.SSLConnectionSocketFactory -  issuer principal: CN=Google Internet Authority G2, O=Google Inc, C=US
+19:24:35.075 [Test worker] DEBUG o.a.h.i.c.DefaultHttpClientConnectionOperator - Connection established 136.206.109.70:62260<->74.125.24.95:443
+19:24:35.075 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Executing request GET /maps/api/directions/json?origin=null&destination=null&key=AIzaSyAjdA8Q5lQzXfWvbtOTl8PF_zE42I8f96E HTTP/1.1
+19:24:35.075 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Target auth state: UNCHALLENGED
+19:24:35.076 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+19:24:35.078 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 >> GET /maps/api/directions/json?origin=null&destination=null&key=AIzaSyAjdA8Q5lQzXfWvbtOTl8PF_zE42I8f96E HTTP/1.1
+19:24:35.079 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 >> Host: maps.googleapis.com
+19:24:35.079 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 >> Connection: Keep-Alive
+19:24:35.079 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.1 (Java/1.8.0_60)
+19:24:35.079 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+19:24:35.079 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 >> "GET /maps/api/directions/json?origin=null&destination=null&key=AIzaSyAjdA8Q5lQzXfWvbtOTl8PF_zE42I8f96E HTTP/1.1[\r][\n]"
+19:24:35.080 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 >> "Host: maps.googleapis.com[\r][\n]"
+19:24:35.080 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+19:24:35.080 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.1 (Java/1.8.0_60)[\r][\n]"
+19:24:35.080 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+19:24:35.080 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 >> "[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Content-Type: application/json; charset=UTF-8[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Date: Thu, 19 May 2016 18:24:32 GMT[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Expires: Fri, 20 May 2016 18:24:32 GMT[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Cache-Control: public, max-age=86400[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Vary: Accept-Language[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Content-Encoding: gzip[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Server: mafe[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "X-XSS-Protection: 1; mode=block[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "X-Frame-Options: SAMEORIGIN[\r][\n]"
+19:24:35.211 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Alternate-Protocol: 443:quic[\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Alt-Svc: quic=":443"; ma=2592000; v="34,33,32,31,30,29,28,27,26,25"[\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "Transfer-Encoding: chunked[\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "00000001[\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "[0x1f][\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "01[\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "[0x8b][\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "bc[\r][\n]"
+19:24:35.212 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "[0x8][0x0][0x0][0x0][0x0][0x0][0x2][0xff][0xab][0xe6]RPPPJO[0xcd]O[0xce]OIM[0x89]/O[0xac],[0xc8][0xcf][0xcc]+)VR[0xb0]R[0x88][0x6][0xc9][0x1]A5[0x94]FRY[0x14]_\[0x92]XR[\n]"
+19:24:35.213 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "V[0xa6][0xe4][0xef][0xad][0xa4][0x83][0xa4][0xa4] '195>3[0x5],[0xe7][0x9c][0xe1][0xe9][0xe5]l[0x10][0x99][0xe2][0x12]_h[0xe4]d[0x18][0x18][0x94][0xeb]f[0xea][0x13][0xe4][0xe6][0x17][0xe8]V[0x9c][0x8c][0xa2][0xa9][0xa4][0xb2] [0x15]b[0xa9][0x82]R[0x1e][0xd0][0xe4][0xa2][0xc4][0x9c][0xf8][0xb4]T[0x10]#UIGA)[0x15]h]RNfqFnj^[0x89][0x92]B,Tg[0xad][0xce][0xe0]w"[0x88][0x8e][0x5][0x9b][0xa3]T[0x94]_Z[0x2]5[0x2]*[0x82][0xe4][0xc4]([0xd7] [0xff][0xf8] [0xd7][0xe0]P[0x9f][0x90]`%[0xae]Z.[0x0][0x8][0xe0][0x9][0x8b][0x9a][0x1][0x0][0x0][\r][\n]"
+19:24:35.213 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "0[\r][\n]"
+19:24:35.213 [Test worker] DEBUG org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+19:24:35.217 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << HTTP/1.1 200 OK
+19:24:35.217 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Content-Type: application/json; charset=UTF-8
+19:24:35.217 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Date: Thu, 19 May 2016 18:24:32 GMT
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Expires: Fri, 20 May 2016 18:24:32 GMT
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Cache-Control: public, max-age=86400
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Vary: Accept-Language
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Content-Encoding: gzip
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Server: mafe
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << X-XSS-Protection: 1; mode=block
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << X-Frame-Options: SAMEORIGIN
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Alternate-Protocol: 443:quic
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Alt-Svc: quic=":443"; ma=2592000; v="34,33,32,31,30,29,28,27,26,25"
+19:24:35.218 [Test worker] DEBUG org.apache.http.headers - http-outgoing-0 << Transfer-Encoding: chunked
+19:24:35.226 [Test worker] DEBUG o.a.h.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
